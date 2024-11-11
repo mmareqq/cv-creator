@@ -1,0 +1,14 @@
+.btn--primary {
+  font-size: var(--fs-500);
+  padding: 0.5em 5em;
+  border-radius: 0.5rem;
+  color: #fff;
+  background-color: #475569;
+  align-self: center;
+  justify-self: center;
+}
+
+.btn--primary:hover {
+  background-color: #1b232e;
+  outline: 1px solid #1b232e;
+}

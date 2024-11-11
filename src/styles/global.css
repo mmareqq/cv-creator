@@ -1,4 +1,8 @@
-@import url("./colors.css");
+@import url('./colors.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   /* ----- COLORS ----- */
@@ -9,8 +13,8 @@
   /* More colors in colors.css */
 
   /* ----- FONTS ----- */
-  --ff-sans: system-ui, sans-serif;
-  --ff-serif: "Times New Roman", Times, Georgia, serif;
+  --ff-sans: 'Noto Sans', serif;
+  --ff-serif: 'Knewave', system-ui;
 
   --fs-100: 0.875rem; /* 14px */
   --fs-400: 1rem; /* 16px */
@@ -39,6 +43,10 @@
   --letter-space-900: 2px;
 }
 
+html {
+  color-scheme: light;
+}
+
 body {
   min-height: 100svh;
   font-family: var(--ff-sans);
@@ -46,30 +54,14 @@ body {
   margin: 0;
 }
 
-.wrapper > * {
-  grid-area: content;
+#root {
+  height: 100svh;
 }
 
-.wrapper,
-.wrapper--small {
-  --_wrapper-padding: 5%;
-  --breakout-padding: 3rem;
-  max-width: 93rem;
-  display: grid;
-  grid-template-columns:
-    [full-width-start] var(--_wrapper-padding) [breakout-start] var(--breakout-padding) [content-start] 1fr [content-end] var(--breakout-padding) [breakout-end] var(--_wrapper-padding) [full-width-end];
+.wrapper {
+  width: 95%;
+  max-width: 90rem;
   margin-inline: auto;
-}
-
-.wrapper--small {
-  --_wrapper-padding: 15%;
-  max-width: 75rem;
-}
-.wrapper--full-width > * {
-  grid-area: full-width;
-}
-.wrapper--breakout > * {
-  grid-area: breakout;
 }
 
 .text-black {
