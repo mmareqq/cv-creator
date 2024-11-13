@@ -1,0 +1,8 @@
+.fieldset {
+  border-radius: 0.5rem;
+  border: 0;
+  background-color: var(--clr-gray-200);
+  box-shadow:
+    var(--clr-gray-300) 0 0 3px 0px,
+    inset var(--clr-gray-100) 0 0 0 3px;
+}
