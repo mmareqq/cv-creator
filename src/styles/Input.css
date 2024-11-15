@@ -1,7 +1,48 @@
 .input {
   font-size: var(--fs-400);
-  border: 1px solid black;
   border-radius: 0.3rem;
-  height: 2em;
+  height: 3em;
+  width: 100%;
+  padding: 0.5em;
+  margin-top: 0.3rem;
+  border: 1px solid var(--clr-gray-600);
   display: block;
+}
+
+:where(input, textarea):where(:focus, :hover) {
+  outline: 1px solid var(--clr-accent);
+}
+
+.input:invalid {
+  outline-color: var(--clr-yellow-600);
+  border-color: var(--clr-yellow-600);
+}
+
+label {
+  font-family: var(--ff-sans);
+  opacity: 1;
+  width: fit-content;
+}
+
+label:has(+ *:focus) {
+  opacity: 1;
+}
+
+.label--animation {
+  position: relative;
+  display: block;
+  top: 0;
+  left: 0;
+  transition:
+    top 0.15s ease-out,
+    left 0.15s ease-out,
+    opacity 0.2s ease-out;
+}
+
+.label--animation:not(:has(+ .input--not-empty), :has(+ .input:focus)) {
+  top: 2.5rem;
+  left: 0.5em;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.5;
 }

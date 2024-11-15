@@ -1,10 +1,17 @@
+import '../styles/Preview.css';
 function Preview({ inputs }) {
-  const name = inputs.get('firstName');
+  const inputsArr = Object.entries(inputs);
   return (
     <>
       <div>
         <h2>Preview</h2>
-        <p>{name}</p>
+        <ul>
+          {inputsArr.map(([key, value]) => (
+            <li key={key}>
+              {key}: {value || ''}
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );

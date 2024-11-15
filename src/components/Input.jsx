@@ -3,21 +3,25 @@ function Input({
   className = 'input',
   label,
   id,
-  handleChange,
+  updateInput,
   type = 'text',
   ...props
 }) {
   return (
-    <>
-      <label htmlFor={id}>{label}:</label>
+    <div className='input-container'>
+      <label htmlFor={id} className='label--animation'>
+        {label}
+      </label>
       <input
-        onChange={handleChange}
+        onChange={(e) => {
+          updateInput(id, e.target.value);
+        }}
         className={className}
         type={type}
         id={id}
         {...props}
       />
-    </>
+    </div>
   );
 }
 export default Input;

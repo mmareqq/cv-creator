@@ -4,31 +4,24 @@ import Preview from './Preview';
 import Form from './Form';
 
 function MainPage() {
-  const [inputs, setInputs] = useState(
-    new Map([
-      ['firstName', ''],
-      ['lastName', ''],
-      ['targetJob', ''],
-      ['email', ''],
-      ['phoneNumber', ''],
-      ['aboutInfo', ''],
-    ]),
-  );
-  console.log(inputs);
+  const [inputs, setInputs] = useState({
+    firstName: '',
+    lastName: '',
+    targetJob: '',
+    email: '',
+    phoneNumber: '',
+    aboutInfo: '',
+  });
 
-  function changeInput(key, value) {
-    setInputs((prevInputs) => {
-      const newInputs = new Map(prevInputs);
-      newInputs.set(key, value);
-      return newInputs;
-    });
+  function updateInput(key, value) {
+    setInputs((prevInputs) => ({ ...prevInputs, [key]: value }));
   }
   return (
     <main className='main'>
       <div className='main__wrapper wrapper'>
         <Preview inputs={inputs} />
 
-        <Form inputs={inputs} handleInputChange={changeInput} />
+        <Form inputs={inputs} updateInput={updateInput} />
       </div>
     </main>
   );

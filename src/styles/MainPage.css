@@ -2,5 +2,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100%;
-  outline: 1px solid lime;
+  align-items: start;
+  align-content: start;
+}
+
+@media (max-width: 900px) {
+  .main__wrapper {
+    grid-template-columns: 1fr;
+  }
 }
