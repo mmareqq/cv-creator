@@ -6,16 +6,21 @@
 .fieldset {
   border-radius: 0.25rem;
   border: 1px solid #8a8a8a;
+  transition: 0.5s;
 }
 
 .fieldset__wrapper {
   display: grid;
   gap: 1rem;
   padding: 1rem;
+  transition: scale 0.2s;
+  scale: 1 1;
+  transform-origin: top;
 }
 
 .fieldset__wrapper:empty {
-  padding: 0;
+  height: 0;
+  scale: 1 0;
 }
 
 .fieldset {

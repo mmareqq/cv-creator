@@ -7,6 +7,7 @@ function InputSection({
   ...props
 }) {
   const [isOpened, setIsOpened] = useState(defaultOpened);
+
   return (
     <fieldset className='fieldset' {...props}>
       <legend className='legend'>{legend}</legend>

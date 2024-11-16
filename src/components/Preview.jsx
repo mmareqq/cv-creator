@@ -1,14 +1,26 @@
 import '../styles/Preview.css';
 function Preview({ inputs }) {
-  const inputsArr = Object.entries(inputs);
   return (
     <>
       <div>
         <h2>Preview</h2>
         <ul>
-          {inputsArr.map(([key, value]) => (
-            <li key={key}>
-              {key}: {value || ''}
+          {Object.entries(inputs).map(([section, inputSection]) => (
+            <li key={section}>
+              <h3>{section}</h3>
+              <ul>
+                {inputSection.map((inputSegment, index) => (
+                  <li key={index}>
+                    <ul>
+                      {Object.entries(inputSegment).map(([key, value]) => (
+                        <li key={key}>
+                          {key}: {String(value)}
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
             </li>
           ))}
         </ul>

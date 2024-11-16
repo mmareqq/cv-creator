@@ -5,16 +5,49 @@ import Form from './Form';
 
 function MainPage() {
   const [inputs, setInputs] = useState({
-    firstName: '',
-    lastName: '',
-    targetJob: '',
-    email: '',
-    phoneNumber: '',
-    aboutInfo: '',
+    personalData: [
+      {
+        firstName: '',
+        lastName: '',
+        targetJob: '',
+        email: '',
+        phoneNumber: '',
+        aboutInfo: '',
+      },
+    ],
+    eduInfo: [
+      {
+        proffesionTitle: '',
+        schoolName: '',
+        startDate: '',
+        endDate: '',
+        tillNow: false,
+      },
+    ],
+    jobInfo: [
+      {
+        jobPosition: '',
+        companyName: '',
+        city: '',
+        startDate: '',
+        endDate: '',
+        tillNow: false,
+        jobDescription: '',
+      },
+    ],
   });
 
-  function updateInput(key, value) {
-    setInputs((prevInputs) => ({ ...prevInputs, [key]: value }));
+  function updateInput(section, field, value) {
+    setInputs((prevState) => {
+      if (section === 'personalData' && sectionIndex !== 0)
+        throw new Error('Index for section wrongly specified');
+      return {
+        ...prevState,
+        [section]: prevState[section].map((item) => {
+          item[field] !== undefined ? { ...item, [field]: value } : item;
+        }),
+      };
+    });
   }
   return (
     <main className='main'>

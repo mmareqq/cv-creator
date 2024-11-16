@@ -1,6 +1,7 @@
 import '../styles/Form.css';
 import Input from './Input';
 import InputSection from './InputSection';
+import InputSegment from './InputSegment';
 
 function Form({ inputs, updateInput }) {
   const personalFields = [
@@ -8,11 +9,7 @@ function Form({ inputs, updateInput }) {
     { label: 'Last Name', id: 'lastName', maxLength: 50 },
     { label: 'Job Title', id: 'targetJob', maxLength: 30 },
     { label: 'Email', id: 'email', maxLength: 50, type: 'email' },
-    {
-      label: 'Phone Number',
-      id: 'phoneNumber',
-      maxLength: 20,
-    },
+    { label: 'Phone Number', id: 'phoneNumber', maxLength: 20 },
   ];
 
   const educationFields = [
@@ -24,21 +21,22 @@ function Form({ inputs, updateInput }) {
       { label: 'Till now', id: 'isEnded', type: 'checkbox' },
     ],
   ];
-
   return (
     <>
       <div>
         <h2>Form</h2>
         <form className='form'>
-          <InputSection legend='Personal Data'>
+          <InputSection defaultOpened={false} legend='Personal Data'>
             {personalFields.map(({ label, id, maxLength, type = 'text' }) => (
               <Input
                 key={id}
                 label={label}
                 id={id}
                 updateInput={updateInput}
-                className={inputs[id] ? 'input input--not-empty' : 'input'}
-                value={inputs[id]}
+                className={
+                  inputs.personalData[id] ? 'input input--not-empty' : 'input'
+                }
+                value={inputs.personalData[0][id]}
                 maxLength={maxLength}
                 type={type}
               />
@@ -60,9 +58,13 @@ function Form({ inputs, updateInput }) {
               ></textarea>
             </div>
           </InputSection>
-          <InputSection defaultOpened='false' legend='Education'></InputSection>
+          <InputSection legend='Education'>
+            {educationFields.map((fieldInfo) => {
+              <InputSegment></InputSegment>;
+            })}
+          </InputSection>
           <InputSection
-            defaultOpened='false'
+            defaultOpened={false}
             legend='Job Experience'
           ></InputSection>
         </form>
