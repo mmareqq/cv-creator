@@ -12,7 +12,7 @@ function Form({ inputs, updateInput }) {
     { label: 'Phone Number', id: 'phoneNumber', maxLength: 20 },
   ];
 
-  const educationFields = [
+  const schoolTemplate = [
     [
       { label: 'Profession Title', id: 'proffesionTitle', maxLength: 40 },
       { label: 'School / University Name', id: 'schoolName', maxLength: 100 },
@@ -58,9 +58,21 @@ function Form({ inputs, updateInput }) {
               ></textarea>
             </div>
           </InputSection>
-          <InputSection legend='Education'>
-            {educationFields.map((fieldInfo) => {
-              <InputSegment></InputSegment>;
+          <InputSection legend='Education' key='education'>
+            {inputs.eduInfo.map((instance, instanceId) => {
+              const key = 'edu-' + instanceId;
+              return (
+                <>
+                  <InputSegment
+                    key={key}
+                    category='eduInfo'
+                    categoryIndex={instanceId}
+                    template={schoolTemplate}
+                    values={instance}
+                    updateInput={updateInput}
+                  ></InputSegment>
+                </>
+              );
             })}
           </InputSection>
           <InputSection

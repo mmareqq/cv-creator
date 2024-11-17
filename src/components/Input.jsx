@@ -5,6 +5,8 @@ function Input({
   id,
   updateInput,
   type = 'text',
+  category,
+  categoryIndex = 0,
   ...props
 }) {
   return (
@@ -14,7 +16,7 @@ function Input({
       </label>
       <input
         onChange={(e) => {
-          updateInput(id, e.target.value);
+          updateInput(id, e.target.value, category, categoryIndex);
         }}
         className={className}
         type={type}
