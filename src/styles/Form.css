@@ -3,6 +3,9 @@
   gap: 3rem;
 }
 
+.form__wrapper {
+}
+
 .fieldset {
   border-radius: 0.25rem;
   border: 1px solid #8a8a8a;
@@ -55,4 +58,18 @@
 
 .btn--add-el {
   width: fit-content;
+}
+
+.inputs-segment {
+  display: grid;
+  gap: 1rem;
+}
+
+.add-section-btn {
+  margin-block: 1em;
+  height: 500px;
+}
+
+.del-section-btn {
+  display: inline;
 }

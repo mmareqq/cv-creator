@@ -1,9 +1,9 @@
 .main__wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  position: relative;
   height: 100%;
-  align-items: start;
-  align-content: start;
+  width: 100%;
 }
 
 @media (max-width: 900px) {

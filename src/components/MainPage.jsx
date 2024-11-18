@@ -21,7 +21,7 @@ function MainPage() {
         schoolName: '',
         startDate: '',
         endDate: '',
-        tillNow: false,
+        tillNow: true,
       },
     ],
     jobInfo: [
@@ -36,6 +36,17 @@ function MainPage() {
       },
     ],
   });
+  console.log(inputs);
+  function addInstance(section, instance) {
+    setInputs((prevState) => {
+      if (!section) throw new Error('No section provided');
+      console.log('instance to be pushed: ', instance);
+      return {
+        ...prevState,
+        [section]: [...prevState[section], instance],
+      };
+    });
+  }
 
   function updateInput(field, value, section, sectionId = 0) {
     setInputs((prevState) => {
@@ -47,7 +58,7 @@ function MainPage() {
         [section]: prevState[section].map((instance, instanceId) => {
           return instanceId === sectionId
             ? { ...instance, [field]: value }
-            : { ...instance };
+            : instance;
         }),
       };
     });
@@ -57,7 +68,11 @@ function MainPage() {
       <div className='main__wrapper wrapper'>
         <Preview inputs={inputs} />
 
-        <Form inputs={inputs} updateInput={updateInput} />
+        <Form
+          inputs={inputs}
+          updateInput={updateInput}
+          addInstance={addInstance}
+        />
       </div>
     </main>
   );

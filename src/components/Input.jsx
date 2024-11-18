@@ -2,16 +2,19 @@ import '../styles/Input.css';
 function Input({
   className = 'input',
   label,
+  lblAnim = true,
   id,
+  htmlId,
   updateInput,
   type = 'text',
   category,
   categoryIndex = 0,
+  disabled = null,
   ...props
 }) {
   return (
     <div className='input-container'>
-      <label htmlFor={id} className='label--animation'>
+      <label htmlFor={htmlId} className={lblAnim ? 'label--animation' : null}>
         {label}
       </label>
       <input
@@ -20,7 +23,9 @@ function Input({
         }}
         className={className}
         type={type}
-        id={id}
+        data-id={id}
+        id={htmlId}
+        data-disabled={disabled}
         {...props}
       />
     </div>
