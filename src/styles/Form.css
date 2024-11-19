@@ -3,9 +3,6 @@
   gap: 3rem;
 }
 
-.form__wrapper {
-}
-
 .fieldset {
   border-radius: 0.25rem;
   border: 1px solid #8a8a8a;
@@ -19,6 +16,12 @@
   transition: scale 0.2s;
   scale: 1 1;
   transform-origin: top;
+}
+
+.inputs-segment {
+  margin-bottom: 5rem;
+  padding-bottom: 5rem;
+  border-bottom: 2px solid black;
 }
 
 .fieldset__wrapper:empty {
@@ -53,11 +56,7 @@
 
 .toggle-btn:focus,
 .toggle-btn:hover {
-  background-color: var(--clr-cyan-800);
-}
-
-.btn--add-el {
-  width: fit-content;
+  background-color: var(--clr-blue-800);
 }
 
 .inputs-segment {
@@ -67,9 +66,32 @@
 
 .add-section-btn {
   margin-block: 1em;
-  height: 500px;
+  color: #fff;
+  background-color: var(--clr-green-700);
+}
+
+.add-section-btn:hover {
+  background-color: var(--clr-green-900);
+}
+
+.segment__title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .del-section-btn {
-  display: inline;
+  font-size: 1rem;
+  padding: 0;
+  background-color: transparent;
+  color: var(--clr-red-800);
+}
+
+.del-section-btn:hover {
+  color: var(--clr-red-950);
+}
+
+.trash-icon {
+  width: 2rem;
+  height: auto;
 }

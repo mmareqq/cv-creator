@@ -7,6 +7,7 @@ function MainPage() {
   const [inputs, setInputs] = useState({
     personalData: [
       {
+        id: 0,
         firstName: '',
         lastName: '',
         targetJob: '',
@@ -17,15 +18,17 @@ function MainPage() {
     ],
     eduInfo: [
       {
+        id: 0,
         proffesionTitle: '',
         schoolName: '',
         startDate: '',
         endDate: '',
-        tillNow: true,
+        tillNow: false,
       },
     ],
     jobInfo: [
       {
+        id: 0,
         jobPosition: '',
         companyName: '',
         city: '',
@@ -36,29 +39,40 @@ function MainPage() {
       },
     ],
   });
-  console.log(inputs);
-  function addInstance(section, instance) {
-    setInputs((prevState) => {
-      if (!section) throw new Error('No section provided');
-      console.log('instance to be pushed: ', instance);
+
+  function removeInstance(sectionName, id) {
+    if (!sectionName || id === undefined) throw new Error('No section nor id provided');
+    setInputs((prevInputs) => {
+      const newSection = prevInputs[sectionName].filter((instance) => {
+        return instance.id === id ? false : true;
+      });
+
       return {
-        ...prevState,
-        [section]: [...prevState[section], instance],
+        ...prevInputs,
+        [sectionName]: newSection,
       };
     });
   }
 
-  function updateInput(field, value, section, sectionId = 0) {
-    setInputs((prevState) => {
-      if (section === 'personalData' && sectionId !== 0)
-        throw new Error('Index for section wrongly specified');
+  function addInstance(section, instance) {
+    if (!section) throw new Error('No section provided');
+    setInputs((prevInputs) => {
+      return {
+        ...prevInputs,
+        [section]: [...prevInputs[section], instance],
+      };
+    });
+  }
+
+  function updateInput(field, value, category, catId = 0) {
+    setInputs((prevInputs) => {
+      if (category === 'personalData' && catId !== 0)
+        throw new Error('Index for category wrongly specified');
 
       return {
-        ...prevState,
-        [section]: prevState[section].map((instance, instanceId) => {
-          return instanceId === sectionId
-            ? { ...instance, [field]: value }
-            : instance;
+        ...prevInputs,
+        [category]: prevInputs[category].map((instance) => {
+          return instance.id === catId ? { ...instance, [field]: value } : instance;
         }),
       };
     });
@@ -72,6 +86,7 @@ function MainPage() {
           inputs={inputs}
           updateInput={updateInput}
           addInstance={addInstance}
+          removeInstance={removeInstance}
         />
       </div>
     </main>

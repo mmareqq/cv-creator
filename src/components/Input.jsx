@@ -8,7 +8,7 @@ function Input({
   updateInput,
   type = 'text',
   category,
-  categoryIndex = 0,
+  categoryId = 0,
   disabled = null,
   ...props
 }) {
@@ -19,7 +19,7 @@ function Input({
       </label>
       <input
         onChange={(e) => {
-          updateInput(id, e.target.value, category, categoryIndex);
+          updateInput(id, e.target.value, category, categoryId);
         }}
         className={className}
         type={type}
