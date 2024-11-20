@@ -9,7 +9,6 @@ function Input({
   type = 'text',
   category,
   categoryId = 0,
-  disabled = null,
   ...props
 }) {
   return (
@@ -25,7 +24,6 @@ function Input({
         type={type}
         data-id={id}
         id={htmlId}
-        data-disabled={disabled}
         {...props}
       />
     </div>

@@ -1,11 +1,8 @@
 import '../styles/Button.css';
-export default function Button({ children, changeState }) {
-  function handleClick() {
-    changeState('running');
-  }
+export default function Button({ handleClick, children, ...props }) {
   return (
     <>
-      <button onClick={handleClick} className='btn--primary'>
+      <button type='button' onClick={handleClick} {...props}>
         {children}
       </button>
     </>

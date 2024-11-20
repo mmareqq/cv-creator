@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import '../styles/Form.css';
-import Input from './Input';
 import InputSection from './InputSection';
 import InputSegment from './InputSegment';
-import TrashIcon from '../assets/props/TrashIcon';
+import Button from './Button';
+import Textarea from './Textarea';
 
 function Form({ inputs, updateInput, addInstance, removeInstance }) {
-  const personalFields = [
+  const personalTemplate = [
     { label: 'First Name', id: 'firstName', maxLength: 50 },
     { label: 'Last Name', id: 'lastName', maxLength: 50 },
     { label: 'Job Title', id: 'targetJob', maxLength: 30 },
@@ -61,53 +61,47 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
     tillNow: false,
     jobDescription: '',
   };
+
+  function getIdentifiers(catName, index) {
+    const id = inputs[catName][index].id;
+    return [catName, id, `${catName}-${id}`];
+  }
   return (
     <div className='form__wrapper'>
       <h2>Form</h2>
       <form className='form'>
-        <InputSection defaultOpened={false} legend='Personal Data' key='personalData'>
-          {personalFields.map(({ label, lblAnim = true, id, maxLength, type = 'text' }) => {
-            const key = 'personalData-' + id;
+        <InputSection defaultOpened='false' legend='Personal Data' key='personalData'>
+          {inputs.personalData.map((instance, instanceIndex) => {
+            const [catName, catId, instanceKey] = getIdentifiers('personalData', instanceIndex);
             return (
-              <Input
-                key={key}
-                label={label}
-                id={id}
-                htmlId={key}
+              <InputSegment
+                key={instanceKey}
+                category={catName}
+                categoryId={catId}
+                index={instanceIndex}
+                title=''
+                template={personalTemplate}
+                values={instance}
                 updateInput={updateInput}
-                category='personalData'
-                categoryIndex={0}
-                lblAnim={lblAnim}
-                className={inputs.personalData[0][id] ? 'input input--not-empty' : 'input'}
-                value={inputs.personalData[0][id]}
-                maxLength={maxLength}
-                type={type}
-              />
+              >
+                <Textarea
+                  id='aboutInfo'
+                  htmlId={`${catName}-${catId}-aboutInfo`}
+                  label='About'
+                  catName={catName}
+                  catId={catId}
+                  placeholder='Write about yourself'
+                  value={inputs[catName][catId]['aboutInfo']}
+                  updateInput={updateInput}
+                ></Textarea>
+              </InputSegment>
             );
           })}
-          <div className='input-container'>
-            <label htmlFor='aboutInfo' className='block'>
-              About
-            </label>
-            <textarea
-              key='aboutInfo'
-              name='aboutInfo'
-              id='aboutInfo'
-              onChange={(e) => {
-                e.preventDefault();
-                updateInput('aboutInfo', e.target.value);
-              }}
-              placeholder='Write about yourself...'
-              className='input textarea'
-            ></textarea>
-          </div>
         </InputSection>
 
         <InputSection defaultOpened={false} legend='Education' key='eduInfo'>
           {inputs.eduInfo.map((instance, instanceIndex) => {
-            const catName = 'eduInfo';
-            const id = inputs[catName][instanceIndex].id;
-            const instanceKey = 'eduInfo' + '-' + id;
+            const [catName, id, instanceKey] = getIdentifiers('eduInfo', instanceIndex);
 
             return (
               <>
@@ -120,77 +114,65 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
                   template={schoolTemplate}
                   values={instance}
                   updateInput={updateInput}
-                >
-                  <button
-                    type='button'
-                    className='del-section-btn'
-                    data-id={id}
-                    id={`${catName}-delBtn-${id}`}
-                    onClick={(e) => {
-                      removeInstance(catName, id);
-                    }}
-                  >
-                    <TrashIcon className='trash-icon' />
-                  </button>
-                </InputSegment>
+                  removeInstance={removeInstance}
+                ></InputSegment>
               </>
             );
           })}
-          <button
+          <Button
             type='button'
-            className='add-section-btn'
-            onClick={() => {
+            handleClick={() => {
               const newId = generateId('eduInfo');
-              addInstance('eduInfo', { id: newId, ...schoolInstance });
+              addInstance('eduInfo', { id: newId, ...jobInstance });
             }}
+            className='add-section-btn'
           >
-            Add School
-          </button>
+            Add Job
+          </Button>
         </InputSection>
 
         <InputSection legend='Job Experience' key='jobInfo'>
           {inputs.jobInfo.map((instance, instanceIndex) => {
-            const catName = 'jobInfo';
-            const id = inputs[catName][instanceIndex].id;
-            const instanceKey = 'jobInfo' + '-' + id;
+            const [catName, catId, instanceKey] = getIdentifiers('jobInfo', instanceIndex);
 
             return (
               <>
                 <InputSegment
                   key={instanceKey}
                   category={catName}
-                  categoryId={id}
+                  categoryId={catId}
                   index={instanceIndex}
                   title='Job / Employment'
                   template={jobTemplate}
                   values={instance}
                   updateInput={updateInput}
+                  removeInstance={removeInstance}
                 >
-                  <button
-                    type='button'
-                    className='del-section-btn'
-                    data-id={id}
-                    id={`${catName}-delBtn-${id}`}
-                    onClick={() => {
-                      removeInstance(catName, id);
-                    }}
-                  >
-                    <TrashIcon className='trash-icon' />
-                  </button>
+                  <div className='input-container'>
+                    <label htmlFor={`${catName}-${catId}-jobDescription`}>Job Description:</label>
+                    <textarea
+                      id={`${catName}-${catId}-jobDescription`}
+                      onChange={(e) => {
+                        updateInput('jobDescription', e.target.value, catName, catId);
+                      }}
+                      value={inputs[catName][`${catName}`]}
+                      className='input'
+                      placeholder='Describe your role, responsibilities, and achievements in this position.'
+                    ></textarea>
+                  </div>
                 </InputSegment>
               </>
             );
           })}
-          <button
-            type='button'
-            className='add-section-btn'
-            onClick={() => {
+          <Button
+            handleClick={() => {
               const newId = generateId('jobInfo');
               addInstance('jobInfo', { id: newId, ...jobInstance });
             }}
+            className='add-section-btn'
           >
             Add Job
-          </button>
+          </Button>
         </InputSection>
       </form>
     </div>

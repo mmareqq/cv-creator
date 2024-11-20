@@ -6,7 +6,9 @@ export default function StartingPage({ changeState }) {
     <main>
       <div className='starting-page__wrapper'>
         <h1 className='starting-page__title'>Create Your CV!</h1>
-        <Button changeState={changeState}>Start</Button>
+        <Button handleClick={() => changeState('running')} className='btn--primary'>
+          Start
+        </Button>
       </div>
     </main>
   );
