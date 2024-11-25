@@ -29,19 +29,17 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
     { label: 'End Date', id: 'endDate', lblAnim: false, type: 'date' },
   ];
 
-  const [idCounters, setIdCounters] = useState({
-    personalData: 0,
-    eduInfo: 0,
-    jobInfo: 0,
-  });
+  const skillsTemplate = [{ label: 'Skill', id: 'skillName', maxLength: 100 }];
+
+  const idCounters = new Map(Object.keys(inputs).map((key) => [key, inputs[key].length - 1]));
 
   function generateId(sectionName) {
-    setIdCounters((prevCounters) => {
-      const newCounters = { ...prevCounters };
-      newCounters[sectionName] += 1;
-      return newCounters;
-    });
-    return idCounters[sectionName] + 1;
+    console.log(sectionName);
+    let newValue = idCounters.get(sectionName);
+    newValue += 1;
+    console.log(idCounters, newValue);
+    idCounters.set(sectionName, newValue);
+    return newValue;
   }
 
   const schoolInstance = {
@@ -62,6 +60,12 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
     jobDescription: '',
   };
 
+  const skillsInstance = {
+    skillName: '',
+  };
+
+  const [includeClause, setIncludeClause] = useState(inputs.clause[0].includeClause);
+
   function getIdentifiers(catName, index) {
     const id = inputs[catName][index].id;
     return [catName, id, `${catName}-${id}`];
@@ -70,7 +74,7 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
     <div className='form__wrapper'>
       <h2>Form</h2>
       <form className='form'>
-        <InputSection defaultOpened='false' legend='Personal Data' key='personalData'>
+        <InputSection defaultOpened={false} legend='Personal Data' key='personalData'>
           {inputs.personalData.map((instance, instanceIndex) => {
             const [catName, catId, instanceKey] = getIdentifiers('personalData', instanceIndex);
             return (
@@ -79,7 +83,7 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
                 category={catName}
                 categoryId={catId}
                 index={instanceIndex}
-                title=''
+                title='Personal Data'
                 template={personalTemplate}
                 values={instance}
                 updateInput={updateInput}
@@ -105,6 +109,7 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
 
             return (
               <>
+                {instanceIndex !== 0 && <hr className='hr' />}
                 <InputSegment
                   key={instanceKey}
                   category={catName}
@@ -113,6 +118,7 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
                   title='School / University'
                   template={schoolTemplate}
                   values={instance}
+                  includeCheckbox={true}
                   updateInput={updateInput}
                   removeInstance={removeInstance}
                 ></InputSegment>
@@ -123,7 +129,7 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
             type='button'
             handleClick={() => {
               const newId = generateId('eduInfo');
-              addInstance('eduInfo', { id: newId, ...jobInstance });
+              addInstance('eduInfo', { id: newId, ...schoolInstance });
             }}
             className='add-section-btn'
           >
@@ -131,12 +137,13 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
           </Button>
         </InputSection>
 
-        <InputSection legend='Job Experience' key='jobInfo'>
+        <InputSection defaultOpened={false} legend='Job Experience' key='jobInfo'>
           {inputs.jobInfo.map((instance, instanceIndex) => {
             const [catName, catId, instanceKey] = getIdentifiers('jobInfo', instanceIndex);
 
             return (
               <>
+                {instanceIndex !== 0 && <hr className='hr' />}
                 <InputSegment
                   key={instanceKey}
                   category={catName}
@@ -146,20 +153,19 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
                   template={jobTemplate}
                   values={instance}
                   updateInput={updateInput}
+                  includeCheckbox={true}
                   removeInstance={removeInstance}
                 >
-                  <div className='input-container'>
-                    <label htmlFor={`${catName}-${catId}-jobDescription`}>Job Description:</label>
-                    <textarea
-                      id={`${catName}-${catId}-jobDescription`}
-                      onChange={(e) => {
-                        updateInput('jobDescription', e.target.value, catName, catId);
-                      }}
-                      value={inputs[catName][`${catName}`]}
-                      className='input'
-                      placeholder='Describe your role, responsibilities, and achievements in this position.'
-                    ></textarea>
-                  </div>
+                  <Textarea
+                    id='jobDescription'
+                    htmlId={`${catName}-${catId}-jobDescription`}
+                    label='About'
+                    catName={catName}
+                    catId={catId}
+                    placeholder='Write about yourself'
+                    value={inputs[catName][catId]['jobDescription']}
+                    updateInput={updateInput}
+                  ></Textarea>
                 </InputSegment>
               </>
             );
@@ -173,6 +179,68 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
           >
             Add Job
           </Button>
+        </InputSection>
+
+        <InputSection defaultOpened={false} legend='Skills' key='skills'>
+          {inputs.skills.map((instance, instanceIndex) => {
+            const [catName, catId, instanceKey] = getIdentifiers('skills', instanceIndex);
+
+            return (
+              <>
+                {instanceIndex !== 0 && <hr className='hr' />}
+                <InputSegment
+                  key={instanceKey}
+                  category={catName}
+                  categoryId={catId}
+                  index={instanceIndex}
+                  title='Skill'
+                  template={skillsTemplate}
+                  values={instance}
+                  updateInput={updateInput}
+                  removeInstance={removeInstance}
+                ></InputSegment>
+              </>
+            );
+          })}
+          <Button
+            handleClick={() => {
+              const newId = generateId('skills');
+              console.log('generated id: ', newId);
+              addInstance('skills', { id: newId, ...skillsInstance });
+            }}
+            className='add-section-btn'
+          >
+            Add Skill
+          </Button>
+        </InputSection>
+
+        <InputSection legend='CV Clause' key='clause'>
+          <div className='flex gap-5 items-center'>
+            <label htmlFor='clause-checkbox' className='opacity-100'>
+              Include Clause?
+            </label>
+            <input
+              id='clause-checkbox'
+              type='checkbox'
+              checked={includeClause}
+              onChange={() => {
+                setIncludeClause(!includeClause);
+              }}
+            />
+          </div>
+          {includeClause && (
+            <Textarea
+              id='clauseContent'
+              htmlId={`cv-clause-content`}
+              label='Clause'
+              catName='clause'
+              catId='0'
+              className='input textarea'
+              placeholder='clause contents'
+              value={inputs.clause[0].clauseContent}
+              updateInput={updateInput}
+            />
+          )}
         </InputSection>
       </form>
     </div>

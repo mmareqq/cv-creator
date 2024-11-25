@@ -1,3 +1,4 @@
+import './styles/tailwind.css';
 import './styles/reset.css';
 import './styles/global.css';
 import { useState } from 'react';
@@ -10,11 +11,7 @@ function App() {
   return (
     <>
       <Header />
-      {appState === 'starting' ? (
-        <StartingPage changeState={changeState} />
-      ) : (
-        <MainPage />
-      )}
+      {appState === 'starting' ? <StartingPage changeState={changeState} /> : <MainPage />}
     </>
   );
 

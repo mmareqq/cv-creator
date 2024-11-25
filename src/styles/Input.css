@@ -54,7 +54,7 @@ label:has(+ *:focus) {
 
 .label--animation:not(:has(+ .input--not-empty), :has(+ .input:focus)) {
   top: 2.5rem;
-  left: 0.5em;
+  left: 0.775em;
   user-select: none;
   pointer-events: none;
   opacity: 0.5;

@@ -38,6 +38,20 @@ function MainPage() {
         jobDescription: '',
       },
     ],
+    skills: [
+      {
+        id: 0,
+        skillName: '',
+      },
+    ],
+    clause: [
+      {
+        id: 0,
+        includeClause: true,
+        clauseContent:
+          'Wyrażam zgodę na przetwarzanie moich danych osobowych przez (nazwa firmy) w celu prowadzenia rekrutacji na aplikowane przeze mnie stanowisko.',
+      },
+    ],
   });
 
   function removeInstance(sectionName, id) {
