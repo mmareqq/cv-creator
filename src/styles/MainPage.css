@@ -1,12 +1,13 @@
 .main__wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  position: relative;
+  gap: 5rem 2rem;
   height: 100%;
-  width: 100%;
+  width: 95%;
+  margin-inline: auto;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .main__wrapper {
     grid-template-columns: 1fr;
   }

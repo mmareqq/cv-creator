@@ -9,13 +9,12 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
   const personalTemplate = [
     { label: 'First Name', id: 'firstName', maxLength: 50 },
     { label: 'Last Name', id: 'lastName', maxLength: 50 },
-    { label: 'Job Title', id: 'targetJob', maxLength: 30 },
     { label: 'Email', id: 'email', maxLength: 50, type: 'email' },
     { label: 'Phone Number', id: 'phoneNumber', maxLength: 20 },
   ];
 
   const schoolTemplate = [
-    { label: 'Profession Title', id: 'proffesionTitle', maxLength: 40 },
+    { label: 'Field of study', id: 'fieldOfStudy', maxLength: 40 },
     { label: 'School / University Name', id: 'schoolName', maxLength: 100 },
     { label: 'Start Date', id: 'startDate', type: 'date', lblAnim: false },
     { label: 'End Date', id: 'endDate', type: 'date', lblAnim: false },
@@ -43,7 +42,7 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
   }
 
   const schoolInstance = {
-    proffesionTitle: '',
+    fieldOfStudy: '',
     schoolName: '',
     startDate: '',
     endDate: '',
@@ -70,11 +69,12 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
     const id = inputs[catName][index].id;
     return [catName, id, `${catName}-${id}`];
   }
+
   return (
     <div className='form__wrapper'>
-      <h2>Form</h2>
+      <h2 className='mt-5 mb-7'>Form</h2>
       <form className='form'>
-        <InputSection defaultOpened={false} legend='Personal Data' key='personalData'>
+        <InputSection legend='Personal Data' key='personalData'>
           {inputs.personalData.map((instance, instanceIndex) => {
             const [catName, catId, instanceKey] = getIdentifiers('personalData', instanceIndex);
             return (
@@ -133,7 +133,7 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
             }}
             className='add-section-btn'
           >
-            Add Job
+            Add School
           </Button>
         </InputSection>
 
@@ -214,7 +214,7 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
           </Button>
         </InputSection>
 
-        <InputSection legend='CV Clause' key='clause'>
+        <InputSection defaultOpened={false} legend='CV Clause' key='clause'>
           <div className='flex gap-5 items-center'>
             <label htmlFor='clause-checkbox' className='opacity-100'>
               Include Clause?
@@ -225,6 +225,7 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
               checked={includeClause}
               onChange={() => {
                 setIncludeClause(!includeClause);
+                updateInput('includeClause', !includeClause, 'clause', 0);
               }}
             />
           </div>

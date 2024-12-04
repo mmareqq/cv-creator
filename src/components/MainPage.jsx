@@ -4,22 +4,39 @@ import Preview from './Preview';
 import Form from './Form';
 
 function MainPage() {
-  const [inputs, setInputs] = useState({
+  const example = {
     personalData: [
       {
         id: 0,
-        firstName: '',
-        lastName: '',
-        targetJob: '',
-        email: '',
-        phoneNumber: '',
-        aboutInfo: '',
+        firstName: 'Marek',
+        lastName: 'Szlejter',
+        email: 'szlejter.marek007@gmail.com',
+        phoneNumber: '+48 592 423 243',
+        address: 'Poland, Warsaw',
+        aboutInfo:
+          "I'm a programmer, like to build things and learn.Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, cupiditate?",
       },
     ],
     eduInfo: [
       {
         id: 0,
-        proffesionTitle: '',
+        fieldOfStudy: '',
+        schoolName: '',
+        startDate: '',
+        endDate: '',
+        tillNow: false,
+      },
+      {
+        id: 1,
+        fieldOfStudy: '',
+        schoolName: '',
+        startDate: '',
+        endDate: '',
+        tillNow: false,
+      },
+      {
+        id: 2,
+        fieldOfStudy: '',
         schoolName: '',
         startDate: '',
         endDate: '',
@@ -52,7 +69,58 @@ function MainPage() {
           'Wyrażam zgodę na przetwarzanie moich danych osobowych przez (nazwa firmy) w celu prowadzenia rekrutacji na aplikowane przeze mnie stanowisko.',
       },
     ],
-  });
+  };
+  // const [inputs, setInputs] = useState({
+  //   personalData: [
+  //     {
+  //       id: 0,
+  //       firstName: '',
+  //       lastName: '',
+  //       email: '',
+  //       phoneNumber: '',
+  //       address: '',
+  //       aboutInfo: '',
+  //     },
+  //   ],
+  //   eduInfo: [
+  //     {
+  //       id: 0,
+  //       fieldOfStudy: '',
+  //       schoolName: '',
+  //       startDate: '',
+  //       endDate: '',
+  //       tillNow: false,
+  //     },
+  //   ],
+  //   jobInfo: [
+  //     {
+  //       id: 0,
+  //       jobPosition: '',
+  //       companyName: '',
+  //       city: '',
+  //       startDate: '',
+  //       endDate: '',
+  //       tillNow: false,
+  //       jobDescription: '',
+  //     },
+  //   ],
+  //   skills: [
+  //     {
+  //       id: 0,
+  //       skillName: '',
+  //     },
+  //   ],
+  //   clause: [
+  //     {
+  //       id: 0,
+  //       includeClause: true,
+  //       clauseContent:
+  //         'Wyrażam zgodę na przetwarzanie moich danych osobowych przez (nazwa firmy) w celu prowadzenia rekrutacji na aplikowane przeze mnie stanowisko.',
+  //     },
+  //   ],
+  // });
+
+  const [inputs, setInputs] = useState(example);
 
   function removeInstance(sectionName, id) {
     if (!sectionName || id === undefined) throw new Error('No section nor id provided');
@@ -93,7 +161,7 @@ function MainPage() {
   }
   return (
     <main className='main'>
-      <div className='main__wrapper wrapper'>
+      <div className='main__wrapper'>
         <Preview inputs={inputs} />
 
         <Form

@@ -1,5 +1,5 @@
 import Input from './Input';
-import TrashIcon from '../assets/props/TrashIcon';
+import TrashIco from '../assets/props/Icons';
 import Button from './Button';
 function InputSegment({
   updateInput,
@@ -28,7 +28,7 @@ function InputSegment({
               removeInstance(category, categoryId);
             }}
           >
-            <TrashIcon className='trash-icon' />
+            <TrashIco className='trash-icon' />
           </Button>
         ) : null}
       </div>

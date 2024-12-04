@@ -1,5 +1,5 @@
 import '../styles/Header.css';
-import { CVIcon } from '../assets/props/CVIcon';
+import { CVIco } from '../assets/props/Icons';
 
 function Header() {
   return (
@@ -7,8 +7,8 @@ function Header() {
       <header className='header'>
         <div className='wrapper'>
           <div href='#' className='logo-con'>
-            <CVIcon size='2em' />
-            <h1 className='title'>CV Creator</h1>
+            <CVIco width='2em' height='2em' />
+            <span className='title'>CV Creator</span>
           </div>
         </div>
       </header>
