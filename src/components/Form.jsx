@@ -9,26 +9,27 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
   const personalTemplate = [
     { label: 'First Name', id: 'firstName', maxLength: 50 },
     { label: 'Last Name', id: 'lastName', maxLength: 50 },
-    { label: 'Email', id: 'email', maxLength: 50, type: 'email' },
+    { label: 'Address', id: 'address', maxLength: 120 },
+    { label: 'Email', id: 'email', maxLength: 80, type: 'email' },
     { label: 'Phone Number', id: 'phoneNumber', maxLength: 20 },
   ];
 
   const schoolTemplate = [
-    { label: 'Field of study', id: 'fieldOfStudy', maxLength: 40 },
+    { label: 'Field of study', id: 'fieldOfStudy', maxLength: 200 },
     { label: 'School / University Name', id: 'schoolName', maxLength: 100 },
-    { label: 'Start Date', id: 'startDate', type: 'date', lblAnim: false },
-    { label: 'End Date', id: 'endDate', type: 'date', lblAnim: false },
+    { label: 'Start Date', id: 'startDate', type: 'month', lblAnim: false },
+    { label: 'End Date', id: 'endDate', type: 'month', lblAnim: false },
   ];
 
   const jobTemplate = [
     { label: 'Job Position', id: 'jobPosition', maxLength: 80 },
     { label: 'Company Name', id: 'companyName', maxLength: 100 },
     { label: 'City', id: 'city', maxLength: 80 },
-    { label: 'Start Date', id: 'startDate', lblAnim: false, type: 'date' },
-    { label: 'End Date', id: 'endDate', lblAnim: false, type: 'date' },
+    { label: 'Start Date', id: 'startDate', lblAnim: false, type: 'month' },
+    { label: 'End Date', id: 'endDate', lblAnim: false, type: 'month' },
   ];
 
-  const skillsTemplate = [{ label: 'Skill', id: 'skillName', maxLength: 100 }];
+  const skillsTemplate = [{ label: 'Skill', id: 'skillName', maxLength: 150 }];
 
   const idCounters = new Map(Object.keys(inputs).map((key) => [key, inputs[key].length - 1]));
 
@@ -247,4 +248,5 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
     </div>
   );
 }
+
 export default Form;

@@ -8,9 +8,9 @@ function MainPage() {
     personalData: [
       {
         id: 0,
-        firstName: 'Marek',
-        lastName: 'Szlejter',
-        email: 'szlejter.marek007@gmail.com',
+        firstName: 'John',
+        lastName: 'Smith',
+        email: 'smith.john@gmail.com',
         phoneNumber: '+48 592 423 243',
         address: 'Poland, Warsaw',
         aboutInfo:
@@ -20,45 +20,69 @@ function MainPage() {
     eduInfo: [
       {
         id: 0,
-        fieldOfStudy: '',
-        schoolName: '',
-        startDate: '',
-        endDate: '',
+        fieldOfStudy: 'IT Technology',
+        schoolName: 'Trinity College, Dublin',
+        startDate: '2020-08',
+        endDate: '2022-06',
         tillNow: false,
       },
       {
         id: 1,
-        fieldOfStudy: '',
-        schoolName: '',
-        startDate: '',
+        fieldOfStudy: 'Cybersecurity & Web Development',
+        schoolName: 'Harvard Univerity',
+        startDate: '2022-07',
         endDate: '',
-        tillNow: false,
-      },
-      {
-        id: 2,
-        fieldOfStudy: '',
-        schoolName: '',
-        startDate: '',
-        endDate: '',
-        tillNow: false,
+        tillNow: true,
       },
     ],
     jobInfo: [
       {
         id: 0,
-        jobPosition: '',
-        companyName: '',
-        city: '',
-        startDate: '',
-        endDate: '',
+        jobPosition: 'Front-end Web Developer',
+        companyName: 'Google z o.o.',
+        city: 'Austin, US',
+        startDate: '2017-05',
+        endDate: '2020-01',
         tillNow: false,
-        jobDescription: '',
+        jobDescription:
+          "Creating website's for clients. Maintaining company website using React, JS, HTML, CSS",
+      },
+      {
+        id: 1,
+        jobPosition: 'Website Performance Tester',
+        companyName: 'Microsoft',
+        city: 'Frankfurt, Germany',
+        startDate: '2020-05',
+        endDate: '2022-11',
+        tillNow: false,
+        jobDescription: 'Worked with an experienced team creating Windows 12',
       },
     ],
     skills: [
       {
         id: 0,
-        skillName: '',
+        skillName: 'C1 English',
+      },
+      {
+        id: 1,
+        skillName: 'A2 Spanish',
+      },
+      {
+        id: 2,
+        skillName: 'Good knowledge about website maintenance and optimization',
+      },
+      {
+        id: 3,
+        skillName:
+          'Familiar with technologies like: HTML, CSS, JS, React, Next.js, TypeScriptm, SQL',
+      },
+      {
+        id: 4,
+        skillName: 'Open for new things to learn',
+      },
+      {
+        id: 5,
+        skillName: 'Friendly, helpful, easy-going',
       },
     ],
     clause: [
