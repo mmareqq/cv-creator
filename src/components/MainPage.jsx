@@ -94,55 +94,55 @@ function MainPage() {
       },
     ],
   };
-  // const [inputs, setInputs] = useState({
-  //   personalData: [
-  //     {
-  //       id: 0,
-  //       firstName: '',
-  //       lastName: '',
-  //       email: '',
-  //       phoneNumber: '',
-  //       address: '',
-  //       aboutInfo: '',
-  //     },
-  //   ],
-  //   eduInfo: [
-  //     {
-  //       id: 0,
-  //       fieldOfStudy: '',
-  //       schoolName: '',
-  //       startDate: '',
-  //       endDate: '',
-  //       tillNow: false,
-  //     },
-  //   ],
-  //   jobInfo: [
-  //     {
-  //       id: 0,
-  //       jobPosition: '',
-  //       companyName: '',
-  //       city: '',
-  //       startDate: '',
-  //       endDate: '',
-  //       tillNow: false,
-  //       jobDescription: '',
-  //     },
-  //   ],
-  //   skills: [
-  //     {
-  //       id: 0,
-  //       skillName: '',
-  //     },
-  //   ],
-  //   clause: [
-  //     {
-  //       id: 0,
-  //       includeClause: true,
-  //       clauseContent:
-  //         'Wyrażam zgodę na przetwarzanie moich danych osobowych przez (nazwa firmy) w celu prowadzenia rekrutacji na aplikowane przeze mnie stanowisko.',
-  //     },
-  //   ],
-  // });
+
+  const emptyTemplate = {
+    personalData: [
+      {
+        id: 0,
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        address: '',
+        aboutInfo: '',
+      },
+    ],
+    eduInfo: [
+      {
+        id: 0,
+        fieldOfStudy: '',
+        schoolName: '',
+        startDate: '',
+        endDate: '',
+        tillNow: false,
+      },
+    ],
+    jobInfo: [
+      {
+        id: 0,
+        jobPosition: '',
+        companyName: '',
+        city: '',
+        startDate: '',
+        endDate: '',
+        tillNow: false,
+        jobDescription: '',
+      },
+    ],
+    skills: [
+      {
+        id: 0,
+        skillName: '',
+      },
+    ],
+    clause: [
+      {
+        id: 0,
+        includeClause: true,
+        clauseContent: '',
+      },
+    ],
+  };
 
   const [inputs, setInputs] = useState(example);
 
@@ -183,6 +183,11 @@ function MainPage() {
       };
     });
   }
+
+  function toggleExampleTemplate(loadExample) {
+    loadExample ? setInputs(example) : setInputs(emptyTemplate);
+  }
+
   return (
     <main className='main'>
       <div className='main__wrapper'>
@@ -193,6 +198,7 @@ function MainPage() {
           updateInput={updateInput}
           addInstance={addInstance}
           removeInstance={removeInstance}
+          toggleExampleTemplate={toggleExampleTemplate}
         />
       </div>
     </main>

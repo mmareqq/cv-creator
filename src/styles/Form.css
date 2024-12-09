@@ -101,3 +101,11 @@
   width: 2rem;
   height: auto;
 }
+
+.toggle-btn--off {
+  outline: 2px solid var(--clr-red-700);
+}
+
+.toggle-btn--on {
+  outline: 2px solid var(--clr-green-700);
+}

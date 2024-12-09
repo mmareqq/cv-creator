@@ -5,7 +5,7 @@ import InputSegment from './InputSegment';
 import Button from './Button';
 import Textarea from './Textarea';
 
-function Form({ inputs, updateInput, addInstance, removeInstance }) {
+function Form({ inputs, updateInput, addInstance, removeInstance, toggleExampleTemplate }) {
   const personalTemplate = [
     { label: 'First Name', id: 'firstName', maxLength: 50 },
     { label: 'Last Name', id: 'lastName', maxLength: 50 },
@@ -68,9 +68,26 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
     return [catName, id, `${catName}-${id}`];
   }
 
+  const [loadExample, setLoadExample] = useState(true);
+
   return (
     <div className='form__wrapper'>
       <h2 className='mt-5 mb-7'>Form</h2>
+      <div className='flex items-center mb-8'>
+        <span>Use example?</span>
+        <button
+          className={
+            (loadExample ? 'toggle-btn--on bg-green-50' : 'toggle-btn--off bg-red-50') +
+            ' bg-white px-4 py-1'
+          }
+          onClick={() => {
+            setLoadExample(!loadExample);
+            toggleExampleTemplate(!loadExample);
+          }}
+        >
+          {loadExample ? 'yes' : 'no'}
+        </button>
+      </div>
       <form className='form'>
         <InputSection legend='Personal Data' key='personalData'>
           {inputs.personalData.map((instance, instanceIndex) => {

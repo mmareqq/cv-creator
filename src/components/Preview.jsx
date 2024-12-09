@@ -5,6 +5,7 @@ import {
   UniversityIco,
   SuitCaseIco,
   LightBulbIco,
+  ExportIco,
 } from '../assets/props/Icons';
 import '../styles/Preview.css';
 import convertDate from '../assets/utils/convertDate';
@@ -15,8 +16,9 @@ function Preview({ inputs }) {
   return (
     <div className='preview__section'>
       <h2 className='mt-5 mb-7'>Preview</h2>
-      <div className='preview border border-solid border-1'>
-        <header className='preview__header bg-cyan-950 text-white p-4'>
+
+      <div className='preview border border-solid border-1' id='cv-preview'>
+        <header className='preview__header p-4'>
           <h1 className='preview__title text-center my-8'>
             {personalData.firstName} {personalData.lastName}
           </h1>
