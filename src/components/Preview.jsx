@@ -46,9 +46,9 @@ function Preview({ inputs }) {
               <span>Education</span>
             </h2>
             <div className='schools grid gap-8 ml-8'>
-              {inputs.eduInfo.map((element) => {
+              {inputs.eduInfo.map((element, index) => {
                 return (
-                  <div key='element'>
+                  <div key={`preview-eduInfo-${index}`}>
                     <div className='text-blue-950 border-solid border-0 border-current border-l-2 pl-3 font-bold text-base'>
                       <span>{element.schoolName}</span>
                     </div>
@@ -70,9 +70,9 @@ function Preview({ inputs }) {
             </h2>
 
             <div className='grid gap-8 ml-8'>
-              {inputs.jobInfo.map((element) => {
+              {inputs.jobInfo.map((element, index) => {
                 return (
-                  <div key='element' className='school grid gap-0'>
+                  <div key={`preview-jobInfo-${index}`} className='school grid gap-0'>
                     <div className='text-blue-950 border-solid border-0 border-current border-l-2 pl-4 font-bold text-base'>
                       <span>{element.companyName}</span>
                     </div>
@@ -96,9 +96,9 @@ function Preview({ inputs }) {
               <span>Skills</span>
             </h2>
             <div className='grid gap-2 ml-8'>
-              {inputs.skills.map((element) => {
+              {inputs.skills.map((element, index) => {
                 return (
-                  <div key='element' className='school grid gap-0'>
+                  <div key={`preview-skills-${index}`} className='school grid gap-0'>
                     <div className='text-blue-950 border-solid border-0 border-current border-l-2 pl-4 text-sm font-bold'>
                       <span>{element.skillName}</span>
                     </div>

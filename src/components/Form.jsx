@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import '../styles/Form.css';
 import InputSection from './InputSection';
 import InputSegment from './InputSegment';
@@ -34,10 +34,7 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
   const idCounters = new Map(Object.keys(inputs).map((key) => [key, inputs[key].length - 1]));
 
   function generateId(sectionName) {
-    console.log(sectionName);
-    let newValue = idCounters.get(sectionName);
-    newValue += 1;
-    console.log(idCounters, newValue);
+    const newValue = idCounters.get(sectionName) + 1;
     idCounters.set(sectionName, newValue);
     return newValue;
   }
@@ -109,10 +106,9 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
             const [catName, id, instanceKey] = getIdentifiers('eduInfo', instanceIndex);
 
             return (
-              <>
+              <Fragment key={instanceKey}>
                 {instanceIndex !== 0 && <hr className='hr' />}
                 <InputSegment
-                  key={instanceKey}
                   category={catName}
                   categoryId={id}
                   index={instanceIndex}
@@ -123,7 +119,7 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
                   updateInput={updateInput}
                   removeInstance={removeInstance}
                 ></InputSegment>
-              </>
+              </Fragment>
             );
           })}
           <Button
@@ -143,10 +139,9 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
             const [catName, catId, instanceKey] = getIdentifiers('jobInfo', instanceIndex);
 
             return (
-              <>
+              <Fragment key={instanceKey}>
                 {instanceIndex !== 0 && <hr className='hr' />}
                 <InputSegment
-                  key={instanceKey}
                   category={catName}
                   categoryId={catId}
                   index={instanceIndex}
@@ -168,7 +163,7 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
                     updateInput={updateInput}
                   ></Textarea>
                 </InputSegment>
-              </>
+              </Fragment>
             );
           })}
           <Button
@@ -187,10 +182,9 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
             const [catName, catId, instanceKey] = getIdentifiers('skills', instanceIndex);
 
             return (
-              <>
+              <Fragment key={instanceKey}>
                 {instanceIndex !== 0 && <hr className='hr' />}
                 <InputSegment
-                  key={instanceKey}
                   category={catName}
                   categoryId={catId}
                   index={instanceIndex}
@@ -200,7 +194,7 @@ function Form({ inputs, updateInput, addInstance, removeInstance }) {
                   updateInput={updateInput}
                   removeInstance={removeInstance}
                 ></InputSegment>
-              </>
+              </Fragment>
             );
           })}
           <Button
