@@ -8,6 +8,7 @@
   border-radius: 0.25rem;
   border: 1px solid #8a8a8a;
   transition: scale 0.5s;
+  background-color: white;
 }
 
 .fieldset__wrapper {

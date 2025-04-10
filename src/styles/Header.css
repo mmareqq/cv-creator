@@ -4,7 +4,7 @@
   justify-content: space-between;
   gap: 2rem;
   padding-block: 2rem;
-  background-color: var(--clr-blue-300);
+  background: linear-gradient(45deg, var(--clr-blue-400), var(--clr-blue-500));
 }
 
 .header .title {
