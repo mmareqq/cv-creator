@@ -1,6 +1,6 @@
 # CV Creator 📄
 
-A React-based application for creating and editing a professional CV. This project is part of my learning journey through [The Odin Project](https://www.theodinproject.com/lessons/node-path-react-new-cv-application), specifically designed to build React skills in a practical way.
+A React application for creating and editing a CV. This project is part of my learning journey through [The Odin Project](https://www.theodinproject.com/lessons/node-path-react-new-cv-application), specifically designed to build React skills in a practical way.
 
 🔗 **Live Demo:** [cv-creator-mmareqq.netlify.app](https://cv-creator-mmareqq.netlify.app)
 
