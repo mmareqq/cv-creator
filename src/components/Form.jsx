@@ -61,8 +61,6 @@ function Form({ inputs, updateInput, addInstance, removeInstance, toggleExampleT
     skillName: '',
   };
 
-  const [includeClause, setIncludeClause] = useState(inputs.clause[0].includeClause);
-
   function getIdentifiers(catName, index) {
     const id = inputs[catName][index].id;
     return [catName, id, `${catName}-${id}`];
@@ -224,36 +222,6 @@ function Form({ inputs, updateInput, addInstance, removeInstance, toggleExampleT
           >
             Add Skill
           </Button>
-        </InputSection>
-
-        <InputSection defaultOpened={false} legend='CV Clause' key='clause'>
-          <div className='flex gap-5 items-center'>
-            <label htmlFor='clause-checkbox' className='opacity-100'>
-              Include Clause?
-            </label>
-            <input
-              id='clause-checkbox'
-              type='checkbox'
-              checked={includeClause}
-              onChange={() => {
-                setIncludeClause(!includeClause);
-                updateInput('includeClause', !includeClause, 'clause', 0);
-              }}
-            />
-          </div>
-          {includeClause && (
-            <Textarea
-              id='clauseContent'
-              htmlId={`cv-clause-content`}
-              label='Clause'
-              catName='clause'
-              catId='0'
-              className='input textarea'
-              placeholder='clause contents'
-              value={inputs.clause[0].clauseContent}
-              updateInput={updateInput}
-            />
-          )}
         </InputSection>
       </form>
     </div>

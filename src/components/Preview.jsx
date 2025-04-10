@@ -109,10 +109,6 @@ function Preview({ inputs }) {
               })}
             </div>
           </section>
-
-          <section className='mx-auto max-w-prose my-10'>
-            <div>{inputs.clause[0].includeClause ? inputs.clause[0].clauseContent : ''}</div>
-          </section>
         </div>
       </div>
     </div>
